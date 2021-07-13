@@ -1,0 +1,48 @@
+version: "3"
+services:
+    mysql-standalone:
+        image: mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=Mypassword
+            - MYSQL_PASSWORD=root
+            - MYSQL_DATABASE=demo
+        ports:
+            - 3307:3306
+    service-discovery:
+        container_name: eureka
+        build:
+            context: ./service-discovery
+            dockerfile: Dockerfile
+        ports:
+            - 8761:8761
+    cloud-gateway:
+        container_name: cloud-gateway
+        build:
+            context: ./cloud-gateway
+            dockerfile: Dockerfile
+        depends_on:
+            - service-discovery
+        environment:
+            eureka.client.serviceUrl.defaultZone: http://service-discovery:8761/eureka/
+        ports:
+            - 9191:9191
+    login-service:
+        image: login-service
+        container_name: login-service
+        build:
+            context: ./login-service
+            dockerfile: Dockerfile
+        environment:
+            eureka.client.serviceUrl.defaultZone: http://service-discovery:8761/eureka/
+            SPRING_DATASOURCE_URL: jdbc:mysql://mysql-standalone:3306/demo?allowPublicKeyRetrieval=true&useSSL=false
+            SPRING_DATASOURCE_USERNAME: root
+            SPRING_DATASOURCE_PASSWORD: Mypassword
+        depends_on:
+            - service-discovery
+            - mysql-standalone
+        ports:
+            - 9001:9001
+        volumes:
+            - my-datavolume:/var/lib/mysql
+volumes:
+  my-datavolume: {}

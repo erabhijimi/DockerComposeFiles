@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="service-discovery">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/service-discovery/service-discovery.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
