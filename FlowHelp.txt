@@ -1,0 +1,49 @@
+abhijitmishra2632:MyGithubPassword@4163
+
+aws::Tavant#1234
+
+git clone -b AWS-Test https://github.com/abhijitmishra2632/cosmosuinew.git
+
+npm install
+npm start
+
+
+http://localhost:4200/loginpage
+1.service-discovery
+git clone https://github.com/abhijitmishra2632/service-discovery.git
+
+
+git clone https://github.com/abhijitmishra2632/cloud-gateway-services.git
+
+git clone -b AWS-Test https://github.com/abhijitmishra2632/login-service.git
+
+403 error:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+1.edit .git/config file under your repo directory
+2.find url=entry under section [remote "origin"]
+3.change it ,
+from url=https://MichaelDrogalis@github.com/derekerdmann/lunch_call.git 
+to url=git@github.com/derekerdmann/lunch_call.git. that is, change all the texts before @ symbol to ssh://git
+
+Ex,
+https://github.com/abhijitmishra2632/login-service.git
+can be 
+url = https://abhijitmishra2632:MyGithubPassword%404163@github.com/abhijitmishra2632/login-service.git			//url encoded
+or,
+ssh://git@github.com/abhijitmishra2632/login-service.git
+or,
+https://abhijitmishra2632:MyGithubPassword@4163@github.com/abhijitmishra2632/login-service.git
+4.Save config file and quit. now you could use git push origin master to sync your repo on GitHub
+
+Docker file Help::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+<finalName>service-discovery</finalName> inside build tag
+mvn clean install
+docker build -f Dockerfile -t cloud-gateway .
+docker images
+docker run -p 9191:9191 cloud-gateway
+docker container ls
+docker stop ee1b12251a3b
+
+login-service
+
+Docker compose Help:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+docker-compose -v
